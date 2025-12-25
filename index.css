@@ -46,14 +46,14 @@ body{
     background-color: #6aaa64;
     border-color: #6aaa64;
     color: white;
-    animation: flip 0.5s ease-in-out;
+    animation: flip 0.7s ease-in-out;
 }
 
 .semi_true_word {
     background-color: #f3db07;
     border-color: #f3db07;
     color: white;
-    animation: flip 0.5s ease-in-out;
+    animation: flip 0.7s ease-in-out;
 }
 
 .wrong_word {
