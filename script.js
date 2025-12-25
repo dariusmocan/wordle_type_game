@@ -1,4 +1,4 @@
-let word = "vagabond";
+let word = "caine";
 
 const table = document.getElementById("table");
 const rows = 6;
@@ -47,20 +47,41 @@ document.addEventListener("keydown", (e) => {
         for (const c of rowCells){
             c.classList.add('true_word');
         }
-
       } else {
-        for (const c of rowCells){
-            c.classList.add('wrong_word');
+        const letterCount = {};
+        for (const letter of word){
+            letterCount[letter] = (letterCount[letter] || 0) + 1;
+        }
+
+        for (let i = 0; i < cols; i++){
+            const guessedLetter = rowCells[i].textContent.toLowerCase(); 
+            if ( guessedLetter === word[i]){
+                rowCells[i].classList.add('true_word');
+                letterCount[guessedLetter]--;
+            }
+        }
+
+
+        for (let i = 0; i < cols; i ++){
+            const guessedLetter = rowCells[i].textContent.toLowerCase(); 
+            if (guessedLetter === word[i]){
+                continue;
+            } else if (word.includes(guessedLetter) && letterCount[guessedLetter] > 0){
+                rowCells[i].classList.add('semi_true_word');
+                letterCount[guessedLetter]--;
+            } else {
+                rowCells[i].classList.add('wrong_word');
+            }
+
         }
 
         setTimeout(() => {
             currenRow++;
             currentCol = 0;
+            currentWord = '';
         },400);
 
-        console.log(currentWord);
-
-        currentWord = currentWord.slice(0,0);
+        //console.log(currentWord);
       }
     }
   }
